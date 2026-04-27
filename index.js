@@ -37,3 +37,41 @@ window.addEventListener("scroll", () => {
     hint.classList.remove("hide");
   }
 });
+
+/* FADE IN + OUT ON SCROLL */
+const faders = document.querySelectorAll(".marquee, .content-image");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    } else {
+      entry.target.classList.remove("show"); // 👈 this is the key
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+faders.forEach(el => {
+  el.classList.add("fade-up");
+  observer.observe(el);
+});
+
+const letter = document.querySelector(".letter-image");
+
+const letterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    } else {
+      entry.target.classList.remove("show");
+    }
+  });
+}, {
+  threshold: 0.3
+});
+
+if (letter) {
+  letterObserver.observe(letter);
+}
