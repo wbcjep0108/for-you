@@ -1,0 +1,224 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+#splash {
+  position: fixed;
+  inset: 0;
+  background: #FDD9E7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+#splash h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+#splash p {
+  margin-top: 10px;
+  color: #666;
+}
+
+/* fade out effect */
+#splash.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-hint {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: #aaa;
+  font-size: 14px;
+
+  opacity: 1;
+  transition: opacity 0.4s ease;
+
+  animation: floatHint 2s ease-in-out infinite;
+  z-index: 999;
+}
+
+.scroll-hint span {
+  font-size: 18px;
+}
+
+/* floating effect */
+@keyframes floatHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* hidden state */
+.scroll-hint.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  position: relative;
+
+  background: url('assets/bg.png') no-repeat center/cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  overflow: hidden;
+}
+
+/* TEXT */
+.hero-text {
+  max-width: 50%;
+  z-index: 2;
+  color: white;
+}
+
+/* RIGHT IMAGE (SLIDE IN) */
+.hero-image {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  transform: translateX(-100%);
+  opacity: 0;
+
+  animation: slideIn 10s ease forwards;
+  z-index: 2;
+}
+
+/* SLIDE ANIMATION */
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* WHITE FADE OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+/* SCROLL FADE */
+.hero.fade .overlay {
+  opacity: 1;
+}
+
+ .content {
+  background:  #FEF4EA;
+  padding: 50px 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* spacing between marquees */
+}
+
+/* viewport */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* moving row */
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marqueeMove 25s linear infinite;
+}
+
+/* reverse direction (second row) */
+.marquee.reverse .marquee-track {
+  animation: marqueeMoveReverse 25s linear infinite;
+}
+
+/* images */
+.content-image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* LEFT → RIGHT / RIGHT → LEFT */
+@keyframes marqueeMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeMoveReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.bday {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  /* start ABOVE the screen */
+  transform: translate(-50%, -200%);
+  opacity: 0;
+
+  animation: bdaySlide 10s ease forwards;
+
+  z-index: 10;
+  text-align: center;
+}
+
+@keyframes bdaySlide {
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+.flower {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  /* start OUTSIDE (right side) */
+  transform: translateX(120%);
+  opacity: 0;
+
+  animation: flowerSlide 10s ease forwards;
+
+  z-index: 10;
+}
+
+/* animation */
+@keyframes flowerSlide {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
