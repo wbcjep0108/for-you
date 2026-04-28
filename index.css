@@ -1,6 +1,9 @@
-body {
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
+  scroll-behavior: smooth;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #splash {
@@ -225,14 +228,21 @@ body {
     opacity: 1;
   }
 }
-
 .second-content {
-  min-height: 100vh;   /* full screen */
+  min-height: 100vh;
   width: 100%;
+
   display: flex;
-  align-items: center;     /* vertical center */
-  justify-content: center; /* horizontal center */
-  background: #FFD3D7; 
+  align-items: center;
+  justify-content: center;
+
+  background: #FFD3D7;
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  box-sizing: border-box;
 }
 
 .letter-image {
@@ -261,6 +271,38 @@ body {
   filter: brightness(1.05);
 }
 
+/* POPUP OVERLAY */
+.letter-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+.letter-popup img {
+  width: 400px;
+  max-width: 80%;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.letter-popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.letter-popup.show img {
+  transform: scale(1);
+}
+
 /* initial state (hidden) */
 .fade-up {
   opacity: 0;
@@ -286,23 +328,34 @@ body {
 
   background: #fff; /* or match your theme */
 }
-
 /* image */
 .us19-image {
-  width: 400px;
+  width: 500px;
   max-width: 80%;
   height: auto;
   object-fit: contain;
 
   /* start hidden */
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(60px) scale(0.98);
 
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* smoother + more natural easing */
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 /* visible */
 .us19-image.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+}
+
+.us19-image {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.us19-image:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }

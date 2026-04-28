@@ -79,3 +79,20 @@ if (us19) {
   }, { threshold: 0.3 });
   us19Observer.observe(us19);
 }
+
+const letterTrigger = document.getElementById("letterTrigger");
+const letterPopup = document.getElementById("letterPopup");
+
+if (letterTrigger && letterPopup) {
+  letterTrigger.addEventListener("click", () => {
+    letterPopup.classList.add("show");
+  });
+
+  // click outside image to close
+  letterPopup.addEventListener("click", (e) => {
+    if (e.target === letterPopup) {
+      letterPopup.classList.remove("show");
+    }
+  });
+}
+
