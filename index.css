@@ -31,6 +31,7 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+
 .scroll-hint {
   position: fixed;
   bottom: 18px;
@@ -61,10 +62,10 @@ body {
   }
 }
 
-/* hide state (used by your JS) */
 .scroll-hint.hide {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 
 /* HERO */
@@ -269,6 +270,39 @@ body {
 
 /* when visible */
 .fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* full screen + center */
+.third-content {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff; /* or match your theme */
+}
+
+/* image */
+.us19-image {
+  width: 400px;
+  max-width: 80%;
+  height: auto;
+  object-fit: contain;
+
+  /* start hidden */
+  opacity: 0;
+  transform: translateY(40px);
+
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* visible */
+.us19-image.show {
   opacity: 1;
   transform: translateY(0);
 }
