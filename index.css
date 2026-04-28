@@ -128,16 +128,17 @@ html, body {
   opacity: 1;
 }
 
- .content {
-  background:  #FEF4EA;
+.content {
+  background: url('assets/bg2.png') no-repeat center center;
+  background-size: cover;
   padding: 50px 0;
   overflow: hidden;
   min-height: 100vh;
-  justify-content: center; 
+  justify-content: center;
 
   display: flex;
   flex-direction: column;
-  gap: 40px; /* spacing between marquees */
+  gap: 40px;
 }
 
 /* viewport */
@@ -276,7 +277,7 @@ html, body {
 .letter-popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.75);
 
   display: flex;
   align-items: center;
@@ -289,8 +290,10 @@ html, body {
 }
 
 .letter-popup img {
-  width: 400px;
-  max-width: 80%;
+  width: min(1200px, 92vw);
+  height: auto;
+  object-fit: contain;
+
   transform: scale(0.8);
   transition: transform 0.3s ease;
 }
@@ -327,7 +330,7 @@ html, body {
   align-items: center;
   justify-content: center;
 
-  background: #fff; /* or match your theme */
+  background: #E8C7C0; 
 }
 /* image */
 .us19-image {
@@ -341,7 +344,7 @@ html, body {
   transform: translateY(60px) scale(0.98);
 
   /* smoother + more natural easing */
-  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 5s ease, transform 5s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 
